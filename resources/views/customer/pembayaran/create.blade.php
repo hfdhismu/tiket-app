@@ -5,7 +5,7 @@
 @section('customer-content')
 <div class="container-fluid py-4">
 
-    <h2 class="mb-4 fw-semibold text-primary-custom">Upload Bukti Pembayaran</h2>
+    <h2 class="mb-4 fw-semibold text-maroon">Upload Bukti Pembayaran</h2>
 
     <div class="card shadow-sm border-0 rounded-4">
         <div class="card-body">
@@ -29,7 +29,7 @@
                     <input type="file" name="bukti_transfer" class="form-control" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary-custom rounded-pill px-3 fw-semibold">
+                <button type="submit" class="btn btn-maroon rounded-pill px-3 fw-semibold">
                     <i class="fas fa-upload me-1"></i> Upload Bukti
                 </button>
 
@@ -41,22 +41,41 @@
 </div>
 
 <style>
-    .btn-primary-custom {
-        background-color: #007bff;
-        color: white;
+    /* Warna tema utama */
+    .text-maroon {
+        color: #800000 !important;
+    }
+
+    .btn-maroon {
+        background-color: #800000;
+        color: #fff;
         border: none;
         transition: all 0.25s ease;
     }
-    .btn-primary-custom:hover {
-        background-color: #0056b3;
-        color: white;
+
+    .btn-maroon:hover {
+        background-color: #660000;
+        color: #fff;
     }
+
     .card {
         transition: all 0.25s ease;
+        border-left: 4px solid #800000;
     }
+
     .card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        box-shadow: 0 6px 18px rgba(128, 0, 0, 0.15);
+    }
+
+    .form-label {
+        color: #4b0000;
+    }
+
+    .form-control:disabled {
+        background-color: #f8f8f8;
+        border-color: #d1bcbc;
+        color: #555;
     }
 </style>
 @endsection

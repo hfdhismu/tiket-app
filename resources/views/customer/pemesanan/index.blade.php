@@ -5,7 +5,7 @@
 @section('customer-content')
     <div class="container-fluid py-4">
 
-        <h2 class="mb-4 fw-semibold text-primary-custom">Daftar Pemesanan Saya</h2>
+        <h2 class="mb-4 fw-semibold text-maroon">Daftar Pemesanan Saya</h2>
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -56,7 +56,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('customer.pemesanan.show', $p->id) }}"
-                                            class="btn btn-sm btn-primary-custom rounded-pill px-3 fw-semibold">
+                                            class="btn btn-sm btn-maroon rounded-pill px-3 fw-semibold">
                                             Detail
                                         </a>
                                     </td>
@@ -78,41 +78,70 @@
 
     {{-- ===== Custom Style ===== --}}
     <style>
-        .btn-primary-custom {
-            background-color: #007bff;
-            color: white;
+        /* Warna utama */
+        .text-maroon {
+            color: #800000 !important;
+        }
+
+        /* Tombol maroon */
+        .btn-maroon {
+            background-color: #800000;
+            color: #fff;
             border: none;
             transition: all 0.25s ease;
         }
 
-        .btn-primary-custom:hover {
-            background-color: #0056b3;
-            color: white;
+        .btn-maroon:hover {
+            background-color: #660000;
+            color: #fff;
         }
 
+        /* Efek card */
+        .card {
+            transition: all 0.25s ease;
+            border-left: 4px solid #800000;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(128, 0, 0, 0.15);
+        }
+
+
+        /* Warna badge */
         .bg-success-subtle {
             background-color: #e8f6ec !important;
+            color: #198754 !important;
         }
 
         .bg-warning-subtle {
             background-color: #fff4e5 !important;
+            color: #cc7700 !important;
         }
 
         .bg-info-subtle {
             background-color: #e5f4ff !important;
+            color: #0d6efd !important;
         }
 
         .bg-danger-subtle {
             background-color: #fde8e8 !important;
+            color: #dc3545 !important;
         }
 
+        .bg-secondary-subtle {
+            background-color: #e9ecef !important;
+            color: #6c757d !important;
+        }
+
+        /* Hover baris tabel */
         .table-hover tbody tr:hover {
-            background-color: rgba(0, 123, 255, 0.05);
+            background-color: rgba(128, 0, 0, 0.05);
         }
 
         .badge {
             font-size: 0.85rem;
             padding: 0.45em 0.65em;
+            border-radius: 8px;
         }
     </style>
 @endsection

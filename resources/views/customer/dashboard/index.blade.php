@@ -5,7 +5,7 @@
 @section('customer-content')
 <div class="container-fluid py-4">
 
-    <h2 class="mb-4 fw-semibold text-primary-custom">Dashboard</h2>
+    <h2 class="mb-4 fw-semibold text-maroon">Dashboard</h2>
 
     {{-- ===== Ringkasan Card ===== --}}
     <div class="row g-4 mb-5">
@@ -13,7 +13,7 @@
             <div class="card shadow-sm border-0 rounded-4 h-100 card-hover">
                 <div class="card-body">
                     <h6 class="text-muted mb-2">Total Pemesanan</h6>
-                    <h3 class="fw-bold text-primary-custom mb-0">{{ $totalPemesanan ?? 0 }}</h3>
+                    <h3 class="fw-bold text-maroon mb-0">{{ $totalPemesanan ?? 0 }}</h3>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
             <div class="card shadow-sm border-0 rounded-4 h-100 card-hover">
                 <div class="card-body">
                     <h6 class="text-muted mb-2">Total Pemesanan Terbayar</h6>
-                    <h3 class="fw-bold text-primary-custom mb-0">{{ $totalPembayaran ?? 0 }}</h3>
+                    <h3 class="fw-bold text-maroon mb-0">{{ $totalPembayaran ?? 0 }}</h3>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div class="card shadow-sm border-0 rounded-4 h-100 card-hover">
                 <div class="card-body">
                     <h6 class="text-muted mb-2">Total Riwayat Pemesanan</h6>
-                    <h3 class="fw-bold text-primary-custom mb-0">{{ $totalRiwayat ?? 0 }}</h3>
+                    <h3 class="fw-bold text-maroon mb-0">{{ $totalRiwayat ?? 0 }}</h3>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
     {{-- ===== Filter Jadwal ===== --}}
     <div class="card shadow-sm border-0 rounded-4 mb-4">
         <div class="card-body">
-            <h5 class="fw-semibold mb-3 text-primary-custom">Cari Jadwal Keberangkatan</h5>
+            <h5 class="fw-semibold mb-3 text-maroon">Cari Jadwal Keberangkatan</h5>
             <form method="GET" action="{{ route('customer.dashboard') }}" class="row g-3 align-items-center">
                 <div class="col-md-5">
                     <input type="text" name="asal" value="{{ request('asal') }}" class="form-control"
@@ -49,7 +49,7 @@
                         placeholder="Cari Tujuan Keberangkatan">
                 </div>
                 <div class="col-md-2 d-grid">
-                    <button type="submit" class="btn btn-primary-custom fw-semibold">Filter</button>
+                    <button type="submit" class="btn btn-maroon fw-semibold">Filter</button>
                 </div>
             </form>
         </div>
@@ -58,11 +58,11 @@
     {{-- ===== Daftar Jadwal Aktif ===== --}}
     <div class="card shadow-sm border-0 rounded-4 mb-5">
         <div class="card-body">
-            <h5 class="fw-semibold mb-3 text-primary-custom">Daftar Jadwal Aktif</h5>
+            <h5 class="fw-semibold mb-3 text-maroon">Daftar Jadwal Aktif</h5>
 
             <div class="table-responsive">
                 <table class="table table-hover align-middle">
-                    <thead class="table-light">
+                    <thead class="table-light text-center">
                         <tr>
                             <th>Kode Jadwal</th>
                             <th>Asal</th>
@@ -75,7 +75,7 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-center">
                         @forelse ($jadwals as $jadwal)
                             <tr>
                                 <td class="fw-semibold">{{ $jadwal->kode_jadwal }}</td>
@@ -91,7 +91,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="{{ route('customer.pemesanan.create', ['jadwal_id' => $jadwal->id]) }}" class="btn btn-sm btn-primary-custom rounded-pill fw-semibold px-3">
+                                    <a href="{{ route('customer.pemesanan.create', ['jadwal_id' => $jadwal->id]) }}" class="btn btn-sm btn-maroon rounded-pill fw-semibold px-3">
                                         <i class="fas fa-ticket-alt me-1"></i> Pesan
                                     </a>
                                 </td>
@@ -112,7 +112,7 @@
     {{-- ===== Chart Section ===== --}}
     <div class="card shadow-sm border-0 rounded-4">
         <div class="card-body">
-            <h5 class="fw-semibold mb-3 text-primary-custom">Grafik Pemesanan 6 Bulan Terakhir</h5>
+            <h5 class="fw-semibold mb-3 text-maroon">Grafik Pemesanan 6 Bulan Terakhir</h5>
             <canvas id="chartPemesanan" height="120"></canvas>
         </div>
     </div>
@@ -121,25 +121,28 @@
 
 {{-- ===== Custom Style ===== --}}
 <style>
+.text-maroon {
+    color: #800000 !important;
+}
+.btn-maroon {
+    background-color: #800000;
+    color: white;
+    border: none;
+    transition: all 0.25s ease;
+}
+.btn-maroon:hover {
+    background-color: #5a0000;
+    color: white;
+}
 .card-hover {
     transition: all 0.25s ease;
 }
 .card-hover:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(128, 0, 0, 0.15);
 }
 .bg-success-subtle {
     background-color: #e8f6ec !important;
-}
-.btn-primary-custom {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    transition: all 0.25s ease;
-}
-.btn-primary-custom:hover {
-    background-color: #0056b3;
-    color: white;
 }
 </style>
 
@@ -153,14 +156,14 @@ new Chart(ctx, {
         labels: ['Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober'],
         datasets: [{
             label: 'Total Pemesanan',
-            data: [10, 18, 25, 20, 30, 27], // dummy data, nanti bisa diganti dari controller
-            borderColor: '#007bff',
-            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+            data: [10, 18, 25, 20, 30, 27],
+            borderColor: '#800000',
+            backgroundColor: 'rgba(128, 0, 0, 0.1)',
             tension: 0.3,
             borderWidth: 2,
             fill: true,
             pointRadius: 4,
-            pointBackgroundColor: '#007bff'
+            pointBackgroundColor: '#800000'
         }]
     },
     options: {

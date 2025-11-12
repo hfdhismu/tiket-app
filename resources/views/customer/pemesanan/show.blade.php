@@ -5,12 +5,12 @@
 @section('customer-content')
     <div class="container-fluid py-4">
 
-        <h2 class="mb-4 fw-semibold text-primary-custom">Detail Pemesanan</h2>
+        <h2 class="mb-4 fw-semibold text-maroon">Detail Pemesanan</h2>
 
         {{-- ===== Info Pemesanan ===== --}}
-        <div class="card shadow-sm border-0 rounded-4 mb-4">
+        <div class="card shadow-sm border-0 rounded-4 mb-4 border-maroon">
             <div class="card-body">
-                <h5 class="fw-bold mb-3 text-primary-custom">Informasi Pemesanan</h5>
+                <h5 class="fw-bold mb-3 text-maroon">Informasi Pemesanan</h5>
 
                 <div class="row g-3">
                     <div class="col-md-6">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-md-6">
                         <p class="mb-1"><strong>Total Harga:</strong></p>
-                        <p class="fw-semibold text-primary-custom">Rp
+                        <p class="fw-semibold text-maroon">Rp
                             {{ number_format($pemesanan->total_harga, 0, ',', '.') }}
                         </p>
                     </div>
@@ -47,9 +47,9 @@
         </div>
 
         {{-- ===== Info Jadwal ===== --}}
-        <div class="card shadow-sm border-0 rounded-4 mb-4">
+        <div class="card shadow-sm border-0 rounded-4 mb-4 border-maroon">
             <div class="card-body">
-                <h5 class="fw-bold mb-3 text-primary-custom">Detail Jadwal</h5>
+                <h5 class="fw-bold mb-3 text-maroon">Detail Jadwal</h5>
 
                 <div class="row g-3">
                     <div class="col-md-6">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-md-6">
                         <p class="mb-1"><strong>Harga per Tiket:</strong></p>
-                        <p class="fw-semibold text-primary-custom">Rp
+                        <p class="fw-semibold text-maroon">Rp
                             {{ number_format($pemesanan->jadwal->harga, 0, ',', '.') }}
                         </p>
                     </div>
@@ -83,14 +83,14 @@
         </div>
 
         {{-- ===== Bukti Pembayaran ===== --}}
-        <div class="card shadow-sm border-0 rounded-4 mb-4">
+        <div class="card shadow-sm border-0 rounded-4 mb-4 border-maroon">
             <div class="card-body">
-                <h5 class="fw-bold mb-3 text-primary-custom">Bukti Pembayaran</h5>
+                <h5 class="fw-bold mb-3 text-maroon">Bukti Pembayaran</h5>
 
                 @if($pemesanan->pembayaran && $pemesanan->pembayaran->bukti_pembayaran)
                     <p>
                         <a href="{{ asset('storage/' . $pemesanan->pembayaran->bukti_pembayaran) }}" target="_blank"
-                            class="btn btn-outline-primary btn-sm">
+                            class="btn btn-outline-maroon btn-sm">
                             <i class="fas fa-eye me-1"></i> Lihat Bukti
                         </a>
                     </p>
@@ -102,7 +102,7 @@
                         in_array($pemesanan->status, ['belum_bayar', 'pending']) &&
                         (!$pemesanan->pembayaran || !$pemesanan->pembayaran->bukti_pembayaran)
                     )
-                    <a href="{{ route('customer.pembayaran.create', $pemesanan->id) }}" class="btn btn-primary-custom mt-2">
+                    <a href="{{ route('customer.pembayaran.create', $pemesanan->id) }}" class="btn btn-maroon mt-2">
                         <i class="fas fa-upload me-1"></i> Upload Bukti Pembayaran
                     </a>
                 @endif
@@ -113,50 +113,79 @@
     </div>
 
     <style>
+        /* Warna utama */
+        .text-maroon {
+            color: #800000 !important;
+        }
+
+        .border-maroon {
+            border-left: 4px solid #800000;
+        }
+
+        /* Tombol */
+        .btn-maroon {
+            background-color: #800000;
+            color: #fff;
+            border: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-maroon:hover {
+            background-color: #660000;
+            color: #fff;
+        }
+
+        .btn-outline-maroon {
+            border: 1px solid #800000;
+            color: #800000;
+            transition: all 0.25s ease;
+        }
+
+        .btn-outline-maroon:hover {
+            background-color: #800000;
+            color: #fff;
+        }
+
+        /* Card effect */
         .card {
             transition: all 0.25s ease;
         }
 
         .card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 6px 18px rgba(128, 0, 0, 0.15);
         }
 
-        .btn-primary-custom {
-            background-color: #007bff;
-            color: white;
-            transition: all 0.25s ease;
-        }
-
-        .btn-primary-custom:hover {
-            background-color: #0056b3;
-            color: white;
-            text-decoration: none;
-        }
-
+        /* Badge */
         .badge {
             font-size: 0.9rem;
             padding: 0.45em 0.65em;
+            border-radius: 8px;
         }
 
         .bg-warning-subtle {
-            background-color: #fff3cd !important;
+            background-color: #fff4e5 !important;
+            color: #cc7700 !important;
         }
 
         .bg-info-subtle {
-            background-color: #d1ecf1 !important;
+            background-color: #e5f4ff !important;
+            color: #0d6efd !important;
         }
 
         .bg-success-subtle {
-            background-color: #d4edda !important;
+            background-color: #e8f6ec !important;
+            color: #198754 !important;
         }
 
         .bg-danger-subtle {
-            background-color: #f8d7da !important;
+            background-color: #fde8e8 !important;
+            color: #dc3545 !important;
         }
 
         .bg-secondary-subtle {
-            background-color: #e2e3e5 !important;
+            background-color: #f2f2f2 !important;
+            color: #6c757d !important;
         }
     </style>
 @endsection

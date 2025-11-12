@@ -136,7 +136,7 @@
 
     <!-- Floating Sidebar -->
     <div class="sidebar" id="sidebar">
-        <div class="brand">🧭 Tiket APP</div>
+        <div class="brand">🧭 Admin Panel</div>
         <ul>
             <li><a href="{{ route('admin.dashboard') }}"
                     class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i class="bi bi-speedometer2"></i>
