@@ -5,14 +5,14 @@
 @section('admin-content')
     <div class="container-fluid py-4">
 
-        <h2 class="mb-4 fw-semibold text-primary-custom">Laporan Pemesanan</h2>
+        <h2 class="mb-4 fw-semibold text-maroon">Laporan Pemesanan</h2>
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
         <div class="mb-3">
-            <a href="{{ route('admin.laporan.cetak') }}" class="btn btn-primary-custom px-4 py-2 fw-semibold rounded-pill">
+            <a href="{{ route('admin.laporan.cetak') }}" class="btn btn-maroon px-4 py-2 fw-semibold rounded-3">
                 <i class="fas fa-file-export me-2"></i> Export PDF / Excel
             </a>
         </div>
@@ -57,14 +57,13 @@
                                         @php
                                             $statusPemesanan = strtolower($p->status ?? '');
                                             $badgeClass = match ($statusPemesanan) {
-                                                'dibayar' => 'bg-success-subtle text-success',
-                                                'selesai' => 'bg-success-subtle text-success',
+                                                'dibayar', 'selesai' => 'bg-success-subtle text-success',
                                                 'batal' => 'bg-danger-subtle text-danger',
-                                                'pending', 'belum_dibayar' => 'bg-info-subtle text-info',
+                                                'pending', 'belum_dibayar' => 'bg-warning-subtle text-warning',
                                                 default => 'bg-secondary-subtle text-secondary',
                                             };
                                         @endphp
-                                        <span class="badge {{ $badgeClass }} fw-bold">
+                                        <span class="badge {{ $badgeClass }} fw-bold rounded-2">
                                             {{ ucfirst(str_replace('_', ' ', $p->status ?? '-')) }}
                                         </span>
                                     </td>
@@ -81,11 +80,11 @@
                                                     default => 'bg-secondary-subtle text-secondary',
                                                 };
                                             @endphp
-                                            <span class="badge {{ $badgePay }} fw-bold">
+                                            <span class="badge {{ $badgePay }} fw-bold rounded-2">
                                                 {{ ucfirst(str_replace('_', ' ', $p->pembayaran->status)) }}
                                             </span>
                                         @else
-                                            <span class="badge bg-secondary-subtle text-secondary fw-bold">Belum bayar</span>
+                                            <span class="badge bg-secondary-subtle text-secondary fw-bold rounded-2">Belum bayar</span>
                                         @endif
                                     </td>
 
@@ -93,7 +92,7 @@
                                     <td>
                                         @if($p->suratJalan)
                                             <a href="{{ route('admin.surat-jalan.show', $p->suratJalan->id) }}"
-                                                class="btn btn-sm btn-primary-custom rounded-pill px-3 fw-semibold">
+                                                class="btn btn-sm btn-outline-maroon rounded-3 px-3 fw-semibold">
                                                 Lihat
                                             </a>
                                         @else
@@ -118,16 +117,36 @@
 
     {{-- ===== Custom Style ===== --}}
     <style>
-        .btn-primary-custom {
-            background-color: #007bff;
-            color: white;
+        .text-maroon {
+            color: #800000 !important;
+        }
+
+        .btn-maroon {
+            background-color: #800000;
+            color: #fff;
             border: none;
             transition: all 0.25s ease;
         }
 
-        .btn-primary-custom:hover {
-            background-color: #0056b3;
-            color: white;
+        .btn-maroon:hover {
+            background-color: #660000;
+            color: #fff;
+        }
+
+        .btn-outline-maroon {
+            border: 1.5px solid #800000;
+            color: #800000;
+            background-color: transparent;
+            transition: all 0.25s ease;
+        }
+
+        .btn-outline-maroon:hover {
+            background-color: #800000;
+            color: #fff;
+        }
+
+        .card {
+            transition: all 0.25s ease;
         }
 
         .bg-success-subtle {
@@ -138,12 +157,8 @@
             background-color: #fff4e5 !important;
         }
 
-        .bg-info-subtle {
-            background-color: #e5f4ff !important;
-        }
-
         .bg-danger-subtle {
-            background-color: #fde8e8 !important;
+            background-color: #fdecec !important;
         }
 
         .bg-secondary-subtle {
@@ -156,8 +171,16 @@
             font-weight: 600;
         }
 
+        .rounded-2 {
+            border-radius: 0.3rem !important;
+        }
+
+        .rounded-3 {
+            border-radius: 0.4rem !important;
+        }
+
         .table-hover tbody tr:hover {
-            background-color: rgba(0, 123, 255, 0.05);
+            background-color: rgba(128, 0, 0, 0.05);
         }
     </style>
 @endsection

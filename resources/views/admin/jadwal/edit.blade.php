@@ -5,10 +5,12 @@
 @section('admin-content')
 <div class="container-fluid py-4">
 
-    <h2 class="mb-4 fw-semibold text-primary-custom">Edit Jadwal</h2>
+    <h2 class="mb-4 fw-semibold text-maroon">Edit Jadwal</h2>
 
     @if(session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
+        <div class="alert alert-danger rounded-4 shadow-sm border-0">
+            {{ session('error') }}
+        </div>
     @endif
 
     <form action="{{ route('admin.jadwal.update', $jadwal->id) }}" method="POST" class="needs-validation" novalidate>
@@ -17,7 +19,7 @@
 
         <div class="card shadow-sm border-0 rounded-4">
             <div class="card-body">
-                <h5 class="fw-bold text-primary-custom mb-3">Formulir Edit Jadwal</h5>
+                <h5 class="fw-bold text-maroon mb-3">Formulir Edit Jadwal</h5>
 
                 <div class="row g-3">
                     <div class="col-md-6">
@@ -58,7 +60,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary-custom px-4 py-2 fw-semibold" style="color: white;">
+                    <button type="submit" class="btn btn-maroon px-4 py-2 fw-semibold shadow-sm">
                         <i class="fas fa-save me-2"></i> Update Jadwal
                     </button>
                 </div>
@@ -67,8 +69,30 @@
     </form>
 </div>
 
-{{-- ===== Custom Style ===== --}}
+{{-- ===== Custom Style (Maroon Theme) ===== --}}
 <style>
+    .text-maroon {
+        color: #800000 !important;
+    }
+
+    .btn-maroon {
+        background-color: #800000;
+        color: #fff;
+        border: none;
+        transition: all 0.25s ease;
+    }
+
+    .btn-maroon:hover {
+        background-color: #5a0000;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .form-control:focus {
+        border-color: #800000;
+        box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.15);
+    }
+
     .card {
         transition: all 0.25s ease;
     }
@@ -78,22 +102,11 @@
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     }
 
-    .form-control:focus {
-        border-color: #007bff;
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
-    }
-
-    .btn-primary-custom {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        transition: all 0.25s ease;
-    }
-
-    .btn-primary-custom:hover {
-        background-color: #0056b3;
-        color: white;
-        text-decoration: none;
+    .alert-danger {
+        background-color: #fceaea;
+        color: #800000;
+        border: 1px solid #e0b3b3;
+        font-weight: 600;
     }
 </style>
 @endsection
